@@ -1,14 +1,60 @@
+.Pokemons{
+  background-color: #6193f7;
+}
+
+/*Search Label Design*/
 .search-control-feedback{
   position:absolute;
   padding: 10px;
   pointer-events: none;
+  margin-left: 50px;
 }
 .search-control{
   padding-left: 30px!important;
   border-radius: 10px;
+  margin-left: 50px;
 }
 
 #search1{
   margin-top:10px;
   margin-bottom: 20px;
+ 
+}
+/*-------------------------------------------*/
+
+.filter{
+  border: solid black 2px;
+  justify-self: center;
+  padding:5px;
+  
+  
+}
+.Type{
+  font-size: 16px;
+}
+
+
+.typeFilter{
+  border: solid black 2px;
+  padding:5px;
+  font-size: 12px;
+  
+}
+
+.column{
+  column-count: 2;
+}
+
+.colorFilter{
+  border: solid black 2px;
+  padding-left: 10px;
+}
+
+.genderFilter{
+  border: solid black 2px;
+  padding:5px;
+}
+
+.display{
+  border: solid black 2px;
 }
