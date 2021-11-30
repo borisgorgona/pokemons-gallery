@@ -1,4 +1,5 @@
 import React from "react";
+import RequestPokemons from './RequestPokemons'
 
 export default function PageWrapper() {
     return (
@@ -123,12 +124,115 @@ export default function PageWrapper() {
                         </div>
                     </div>
                     {/*----------------------------------- */}
-                    <div className="colorFilter"></div>
-                    <div className="genderFilter"></div>
+
+                    {/*-------------    Color Filter--------------- */}
+                    <div className="colorFilter">
+                        <div>
+                            <p>Color:</p>
+                        </div>
+                        <div >
+                            <div className="row">
+                                <div className="col-2">
+                                    <label className="container1" id="c1">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c2">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c3">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c4">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c5">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-2">
+                                    <label className="container1" id="c6">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c7">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c8">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c9">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div className="col-2">
+                                    <label className="container1" id="c10">
+                                        <input type="checkbox" />
+                                        <span className="checkmark"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {/*--------------------------------------------- */}
+
+                    {/*----------------Gender Filter---------------- */}
+                    <div className="genderFilter">
+                        <form>
+                            <p>Gender :</p>
+                            <label><input type="radio" name="gender" /> All</label><br />
+                            <label><input type="radio" name="gender" /> Male</label><br />
+                            <label><input type="radio" name="gender" /> Female</label><br />
+                            <label><input type="radio" name="gender" /> Undefined</label>
+                        </form>
+                    </div>
+
+                    {/*--------------------------------------------- */}
                 </div>
                 {/*------------------------------------------ */}
 
-                <div className="col-md-9 display"></div>
+                <div className="col-md-9 display">
+                    <div className="size" id="1"></div>
+                    <div className="size" id="2"></div>
+                    <div>
+                        <button >Load more</button>
+                    </div>
+                    <RequestPokemons />
+                </div>
+
             </div>
 
         </div>
