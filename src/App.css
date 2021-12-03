@@ -3,7 +3,9 @@
   column-count: 5;
 }
 
-
+.OFF{
+  display:none;
+}
 .Pokemons{
   background-color: #6193f7;
 }

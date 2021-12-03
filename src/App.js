@@ -21,9 +21,18 @@ function RenderPokemon({ avatar, name, id }) {
 
 export default function App() {
 
-
+  /* -------------State to request Pokemons ---------*/
   const [pokemons, setPokemons] = useState([]);
-  const [count, setCount] = useState(1);
+  /* ------------------------------------------------------------- */
+
+  /* ----------Driving to Pokemons to Page----------- */
+  const [paginaActual, setPaginaActual] = useState(1);
+  const TOTAL_POR_PAGINA = 20;
+
+  /*----------------------------------------------------- */
+
+
+
 
 
   useEffect(() => {
@@ -48,11 +57,21 @@ export default function App() {
 
     }
 
-    getPokemons("https://pokeapi.co/api/v2/pokemon/?limit=200");
+    getPokemons("https://pokeapi.co/api/v2/pokemon/?limit=75");
 
 
 
   }, [])
+
+  /* ----- Load Pokemons to page ----------- */
+
+  let loadPokemons = pokemons;
+
+  loadPokemons = loadPokemons.slice(
+    (paginaActual - 1) * TOTAL_POR_PAGINA,
+    paginaActual * TOTAL_POR_PAGINA
+  );
+  /*-------------------------------------------------- */
 
 
   return (
@@ -63,16 +82,17 @@ export default function App() {
 
         <div className="prueba">
 
-          {pokemons.length === 0 ? (
+          {loadPokemons.length === 0 ? (
             <h3>Cargando...</h3>
           ) : (
-            pokemons.map(el => (
+            loadPokemons.map(el => (
               <RenderPokemon key={el.id} name={el.name} id={el.id} avatar={el.avatar} />
             )))
           }
         </div>
-        <div><button onClick={() => setCount(count + 1)}>Load Pokemons</button>
-          <h6>Peticion número {count}</h6>
+        <div><button className={paginaActual === Math.ceil(pokemons.length / TOTAL_POR_PAGINA) ? "OFF" : ''}
+          onClick={() => setPaginaActual(paginaActual + 1)} >Load Pokemons </button>
+
         </div>
 
       </PageWrapper>
