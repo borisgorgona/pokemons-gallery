@@ -63,9 +63,12 @@ export default function App() {
 
   }, [])
 
-  /* ----- Load Pokemons to page ----------- */
 
-  let loadPokemons = pokemons;
+  /* Sort the Pokemons from smallest to largest  */
+  let loadPokemons = pokemons.sort((a, b) => a.id - b.id);
+
+
+  /* ----- Load Pokemons to page ----------- */
 
   loadPokemons = loadPokemons.slice(
     (paginaActual - 1) * TOTAL_POR_PAGINA,
