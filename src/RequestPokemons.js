@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-function Pokemon({ avatar, name }) {
+function Pokemon({ avatar, name, id }) {
+
+
     return (
         <figure>
-            <img src={avatar} alt={name} />
-            <figcaption>{name}</figcaption>
+            <a href="#"><img src={avatar} alt={name} /></a>
+            <figcaption>{name} {id}</figcaption>
         </figure>
+
+
     );
 }
+
+
 
 export default function RequestPokemons() {
     const [pokemons, setPokemons] = useState([]);
@@ -42,15 +48,15 @@ export default function RequestPokemons() {
 
     return (
         <>
-
-            {pokemons.length === 0 ? (
-                <h3>Cargando...</h3>
-            ) : (
-                pokemons.map(el => (
-                    <Pokemon key={el.id} name={el.name} avatar={el.avatar} />
-                )))
-            }
-
+            <div className="prueba">
+                {pokemons.length === 0 ? (
+                    <h3>Cargando...</h3>
+                ) : (
+                    pokemons.map(el => (
+                        <Pokemon key={el.id} name={el.name} id={el.id} avatar={el.avatar} />
+                    )))
+                }
+            </div>
         </>
 
     );

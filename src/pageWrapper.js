@@ -1,7 +1,10 @@
 import React from "react";
-import RequestPokemons from './RequestPokemons'
 
-export default function PageWrapper() {
+
+export default function PageWrapper(props) {
+    /*const filterType = ["Psychic", "Fighting", "Fairy", "Sinister", "Dragon", "Steel", "Plant", "Poison", "Ghost", "Unknow"];
+const filterType1 = ["Bug", "Electric", "Water", "Ground", "Fire", "Ice", "Flying", "Rock", "Normal", "Gross"];*/
+    const gender = ["All", "Male", "Female", "Underfine"];
     return (
         <div className="Pokemons container">
             {/*------ Search Label Design -------*/}
@@ -26,10 +29,12 @@ export default function PageWrapper() {
 
                         <div >
                             <div className="row justify-content-center">
-                                <div className="col-5">
+                                <div className="col-5 ">
+                                    {/*filterType1.map((tipo) => <label><input type="checkbox" /> {tipo}</label>)*/}
                                     <label><input type="checkbox" /> Bug</label>
                                 </div>
                                 <div className="col-5">
+                                    {/*filterType.map((tipo) => <label><input type="checkbox" /> {tipo}</label>)*/}
                                     <label><input type="checkbox" /> Electric</label>
                                 </div>
                             </div>
@@ -133,6 +138,7 @@ export default function PageWrapper() {
                         <div >
                             <div className="row">
                                 <div className="col-2">
+
                                     <label className="container1" id="c1">
                                         <input type="checkbox" />
                                         <span className="checkmark"></span>
@@ -213,10 +219,17 @@ export default function PageWrapper() {
                     <div className="genderFilter">
                         <form>
                             <p>Gender :</p>
-                            <label><input type="radio" name="gender" /> All</label><br />
+
+                            {
+
+                                gender.map((tipo) => <div><label><input type="radio" name="gender" /> {tipo}</label></div>)
+
+                            }
+
+                            {/* <label><input type="radio" name="gender" /> All</label><br />
                             <label><input type="radio" name="gender" /> Male</label><br />
                             <label><input type="radio" name="gender" /> Female</label><br />
-                            <label><input type="radio" name="gender" /> Undefined</label>
+                            <label><input type="radio" name="gender" /> Undefined</label>*/}
                         </form>
                     </div>
 
@@ -225,12 +238,10 @@ export default function PageWrapper() {
                 {/*------------------------------------------ */}
 
                 <div className="col-md-9 display">
-                    <div className="size" id="1"></div>
-                    <div className="size" id="2"></div>
-                    <div>
-                        <button >Load more</button>
-                    </div>
-                    <RequestPokemons />
+
+                    {props.children}
+
+
                 </div>
 
             </div>
