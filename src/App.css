@@ -1,7 +1,5 @@
 
-.prueba{
-  column-count: 5;
-}
+
 
 .OFF{
   display:none;
@@ -10,23 +8,7 @@
   background-color: #6193f7;
 }
 
-/*Search Label Design*/
-.search-control-feedback{
-  position:absolute;
-  padding: 10px;
-  pointer-events: none;
-  margin-left: 50px;
-}
-.search-control{
-  padding-left: 30px!important;
-  border-radius: 10px;
-  margin-left: 50px;
-}
 
-#search1{
-  margin-top:10px;
-  margin-bottom: 20px;
- 
 }
 /*-------------------------------------------*/
 
@@ -103,14 +85,7 @@
   
 
   /* Contenedor */
-  .container1 {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 30px;
-    cursor: pointer;
-    font-size: 8px;
-  }
+  
 
   /* escondemos el default checkbox */
   .container1 input {

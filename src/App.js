@@ -1,37 +1,29 @@
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap";
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import PageWrapper from './pageWrapper';
+
+/*--------Modules from components------ */
+import Search from './components/Search/Search';
+import Card from "./components/Card/Card";
+import Pagination from './components/Pagination/Pagination';
+import Filter from './components/Filter/Filter';
+import Navbar from './components/Navbar/Navbar';
+
+/*------------------------------------- */
 
 
 
-function RenderPokemon({ avatar, name, id }) {
 
 
-  return (
-    <figure>
-      <a href="#"><img src={avatar} alt={name} /></a>
-      <figcaption>{name} {id}</figcaption>
-    </figure>
 
-
-  );
-}
 
 
 export default function App() {
 
-  /* -------------State to request Pokemons ---------*/
-  const [pokemons, setPokemons] = useState([]);
-  /* ------------------------------------------------------------- */
+  let api = `https://pokeapi.co/api/v2/pokemon/?offset=100&limit=100`
 
-  /* ----------Driving to Pokemons to Page----------- */
-  const [paginaActual, setPaginaActual] = useState(1);
-  const TOTAL_POR_PAGINA = 20;
-
-  /*----------------------------------------------------- */
-
-
+  /*let api = `https://pokeapi.co/api/v2/pokedex/national`*/
 
 
 
@@ -39,13 +31,13 @@ export default function App() {
     const getPokemons = async (url) => {
       let res = await fetch(url),
         json = await res.json();
-      console.log(json);
+      //console.log(json);
 
       json.results.forEach(async (el) => {
         let res = await fetch(el.url),
           json = await res.json();
 
-        console.log(json);
+        //console.log(json);
         let pokemon = {
           id: json.id,
           name: json.name,
@@ -54,55 +46,47 @@ export default function App() {
 
         setPokemons((pokemons) => [...pokemons, pokemon]);
       });
-
     }
 
-    getPokemons("https://pokeapi.co/api/v2/pokemon/?limit=75");
+    getPokemons(api);
+
+  }, [api]);
+
+  const [pokemons, setPokemons] = useState([]);
+  let results = pokemons;
 
 
 
-  }, [])
 
 
-  /* Sort the Pokemons from smallest to largest  */
-  let loadPokemons = pokemons.sort((a, b) => a.id - b.id);
 
 
-  /* ----- Load Pokemons to page ----------- */
 
-  loadPokemons = loadPokemons.slice(
-    (paginaActual - 1) * TOTAL_POR_PAGINA,
-    paginaActual * TOTAL_POR_PAGINA
-  );
-  /*-------------------------------------------------- */
+
+
+
+
+
+
+
 
 
   return (
-    <>
 
-
-      <PageWrapper >
-
-        <div className="prueba">
-
-          {loadPokemons.length === 0 ? (
-            <h3>Cargando...</h3>
-          ) : (
-            loadPokemons.map(el => (
-              <RenderPokemon key={el.id} name={el.name} id={el.id} avatar={el.avatar} />
-            )))
-          }
+    <div className="App">
+      <h1 className="text-center mb-3">Characters</h1>
+      <div className="container">
+        <div className="row">
+          Filter component will be placed here
+          <div className="col-lg-8 col-12">
+            <div className="row">
+              <Card results={results} />
+            </div>
+          </div>
         </div>
-        <div><button className={paginaActual === Math.ceil(pokemons.length / TOTAL_POR_PAGINA) ? "OFF" : ''}
-          onClick={() => setPaginaActual(paginaActual + 1)} >Load Pokemons </button>
+      </div>
+    </div>
 
-        </div>
-
-      </PageWrapper>
-
-
-
-    </>
 
   );
 
