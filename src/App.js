@@ -21,7 +21,7 @@ import Navbar from './components/Navbar/Navbar';
 
 export default function App() {
 
-  let api = `https://pokeapi.co/api/v2/pokemon/?offset=100&limit=100`
+  let api = `https://pokeapi.co/api/v2/pokemon/?limit=100`
 
   /*let api = `https://pokeapi.co/api/v2/pokedex/national`*/
 
@@ -52,18 +52,30 @@ export default function App() {
 
   }, [api]);
 
+  /*--------State to request Pokemons------------ */
   const [pokemons, setPokemons] = useState([]);
-  let results = pokemons;
+
+  // Sort Pokemons from smallest to largest
+  let results = pokemons.sort((a, b) => a.id - b.id);
+  //----------------------------------------------
 
 
+  /*----------Driving Pokemons to Page---------- */
+  let [pageNumber, updatePageNumber] = useState(1);
+  const pokemonForPage = 20;
+
+  /* ----- Load Pokemons to page ----------- */
+
+  results = results.slice(
+    (pageNumber - 1) * pokemonForPage,
+    pageNumber * pokemonForPage
+  );
+  /*-------------------------------------------------- */
 
 
-
-
-
-
-
-
+  //---------------Search Pokemons--------------------
+  let [search, setSearch] = useState("");
+  //--------------------------------------------------
 
 
 
@@ -81,6 +93,11 @@ export default function App() {
           <div className="col-lg-8 col-12">
             <div className="row">
               <Card results={results} />
+            </div>
+
+            <div><button className={pageNumber === Math.ceil(pokemons.length / pokemonForPage) ? "OFF" : ''}
+              onClick={() => updatePageNumber(pageNumber + 1)} >Load Pokemons </button>
+
             </div>
           </div>
         </div>
